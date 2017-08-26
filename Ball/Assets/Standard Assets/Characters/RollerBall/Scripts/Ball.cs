@@ -22,7 +22,7 @@ namespace UnityStandardAssets.Vehicles.Ball
         }
 
 
-        public void Move(Vector3 moveDirection, bool jump)
+		public void Move(Vector3 moveDirection, bool jump, bool push)
         {
             // If using torque to rotate the ball...
             if (m_UseTorque)
@@ -42,6 +42,12 @@ namespace UnityStandardAssets.Vehicles.Ball
                 // ... add force in upwards.
                 m_Rigidbody.AddForce(Vector3.up*m_JumpPower, ForceMode.Impulse);
             }
+			// If push is pressed...
+			if (push)
+			{
+				// ... add force in upwards.
+				m_Rigidbody.AddForce(Vector3.forward*m_JumpPower, ForceMode.Impulse);
+			}
         }
     }
 }
